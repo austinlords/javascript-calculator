@@ -1,0 +1,128 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#background {
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #cef;
+}
+
+#calculator {
+  height: 400px;
+  width: 300px;
+  padding: 3px;
+  background-color: black;
+  border: 1px solid silver;
+  box-shadow: 3px 3px 8px -1px black;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "display display display display"
+    "clear clear divide multiply"
+    "seven eight nine minus"
+    "four five six plus"
+    "one two three equals"
+    "zero zero decimal equals";
+}
+
+#calculator > #display {
+  grid-area: display;
+  font-size: 24px;
+  color: white;
+  align-items: flex-end;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  padding: 5px 10px;
+  font-family: digital;
+}
+
+#calculator > #clear {
+  grid-area: clear;
+  background-color: #d33;
+}
+
+#calculator > #divide {
+  grid-area: divide;
+}
+#calculator > #multiply {
+  grid-area: multiply;
+}
+
+#calculator > #seven {
+  grid-area: seven;
+}
+#calculator > #eight {
+  grid-area: eight;
+}
+#calculator > #nine {
+  grid-area: nine;
+}
+#calculator > #minus {
+  grid-area: minus;
+}
+#calculator > #four {
+  grid-area: four;
+}
+#calculator > #five {
+  grid-area: five;
+}
+#calculator > #six {
+  grid-area: six;
+}
+#calculator > #plus {
+  grid-area: plus;
+}
+#calculator > #one {
+  grid-area: one;
+}
+#calculator > #two {
+  grid-area: two;
+}
+#calculator > #three {
+  grid-area: three;
+}
+#calculator > #equals {
+  grid-area: equals;
+  background-color: #38e;
+}
+#calculator > #zero {
+  grid-area: zero;
+}
+#calculator > #decimal {
+  grid-area: decimal;
+  background-color: #445;
+}
+
+.operations {
+  background-color: gray;
+}
+
+.number {
+  background-color: #445;
+}
+
+.key {
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.key:hover {
+  transform: scale(1.02);
+  border: 1px solid white;
+}
