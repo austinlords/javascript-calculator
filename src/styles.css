@@ -25,8 +25,8 @@
   grid-template-areas:
     "display display display display"
     "clear clear divide multiply"
-    "seven eight nine minus"
-    "four five six plus"
+    "seven eight nine subtract"
+    "four five six add"
     "one two three equals"
     "zero zero decimal equals";
 }
@@ -40,6 +40,7 @@
   grid-template-rows: 50% 50%;
   padding: 5px 10px;
   font-family: digital;
+  text-align: right;
 }
 
 #calculator > #clear {
@@ -63,8 +64,8 @@
 #calculator > #nine {
   grid-area: nine;
 }
-#calculator > #minus {
-  grid-area: minus;
+#calculator > #subtract {
+  grid-area: subtract;
 }
 #calculator > #four {
   grid-area: four;
@@ -75,8 +76,8 @@
 #calculator > #six {
   grid-area: six;
 }
-#calculator > #plus {
-  grid-area: plus;
+#calculator > #add {
+  grid-area: add;
 }
 #calculator > #one {
   grid-area: one;

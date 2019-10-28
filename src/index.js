@@ -6,6 +6,59 @@ import "./styles.css";
 function App() {
   let [display, setDisplay] = useState("0");
 
+  function handleClick(event) {
+    const value = event.currentTarget.innerText;
+    const displayArr = display.split(" ");
+    const currentNum = displayArr[displayArr.length - 1];
+    console.log("arr: ", displayArr);
+    console.log("display: ", display);
+
+    switch (value) {
+      case "clear":
+        setDisplay("0");
+        break;
+      case "0":
+        if (currentNum.length < 2 && currentNum[0] === "0") break;
+        setDisplay(display.concat(value));
+        break;
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+      case "9":
+        currentNum.length === 1 && currentNum[0] === "0"
+          ? setDisplay(display.substring(0, display.length - 1) + value)
+          : setDisplay(display.concat(value));
+        break;
+      case ".":
+        currentNum.includes(".")
+          ? setDisplay(display)
+          : setDisplay(display.concat(value));
+        break;
+      case "+":
+      case "-":
+      case "/":
+      case "*":
+        const currentOp = display[display.length - 2];
+        currentOp === "+" ||
+        currentOp === "-" ||
+        currentOp === "*" ||
+        currentOp === "/"
+          ? setDisplay(display.substring(0, display.length - 2) + `${value} `)
+          : setDisplay(`${display} ${value} `);
+        break;
+      case "=":
+        console.log("do calculation!");
+        break;
+      default:
+        console.log("click not recognized: ", value);
+    }
+  }
+
   return (
     <div id="background">
       <div id="calculator">
@@ -13,55 +66,55 @@ function App() {
           <div />
           <div>{display}</div>
         </div>
-        <div id="clear" className="key">
+        <div id="clear" className="key" onClick={handleClick}>
           clear
         </div>
-        <div id="divide" className="key operations">
+        <div id="divide" className="key operations" onClick={handleClick}>
           /
         </div>
-        <div id="multiply" className="key operations">
-          x
+        <div id="multiply" className="key operations" onClick={handleClick}>
+          *
         </div>
-        <div id="seven" className="key number">
+        <div id="seven" className="key number" onClick={handleClick}>
           7
         </div>
-        <div id="eight" className="key number">
+        <div id="eight" className="key number" onClick={handleClick}>
           8
         </div>
-        <div id="nine" className="key number">
+        <div id="nine" className="key number" onClick={handleClick}>
           9
         </div>
-        <div id="minus" className="key operations">
+        <div id="subtract" className="key operations" onClick={handleClick}>
           -
         </div>
-        <div id="four" className="key number">
+        <div id="four" className="key number" onClick={handleClick}>
           4
         </div>
-        <div id="five" className="key number">
+        <div id="five" className="key number" onClick={handleClick}>
           5
         </div>
-        <div id="six" className="key number">
+        <div id="six" className="key number" onClick={handleClick}>
           6
         </div>
-        <div id="plus" className="key operations">
+        <div id="add" className="key operations" onClick={handleClick}>
           +
         </div>
-        <div id="one" className="key number">
+        <div id="one" className="key number" onClick={handleClick}>
           1
         </div>
-        <div id="two" className="key number">
+        <div id="two" className="key number" onClick={handleClick}>
           2
         </div>
-        <div id="three" className="key number">
+        <div id="three" className="key number" onClick={handleClick}>
           3
         </div>
-        <div id="equals" className="key">
+        <div id="equals" className="key" onClick={handleClick}>
           =
         </div>
-        <div id="zero" className="key number">
+        <div id="zero" className="key number" onClick={handleClick}>
           0
         </div>
-        <div id="decimal" className="key">
+        <div id="decimal" className="key" onClick={handleClick}>
           .
         </div>
       </div>
