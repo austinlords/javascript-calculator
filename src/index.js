@@ -6,12 +6,28 @@ import "./styles.css";
 function App() {
   let [display, setDisplay] = useState("0");
 
+  function calculate(arr) {
+    const answer = [...arr].reduce((acc, el, idx, src) => {
+      switch (el) {
+        case "-":
+          return acc - Number(src[idx + 1]);
+        case "+":
+          return acc + Number(src[idx + 1]);
+        case "/":
+          return acc / Number(src[idx + 1]);
+        case "*":
+          return acc * Number(src[idx + 1]);
+        default:
+          return acc;
+      }
+    }, parseFloat(arr[0]));
+    setDisplay((Math.round(answer * 10000) / 10000).toString());
+  }
+
   function handleClick(event) {
     const value = event.currentTarget.innerText;
     const displayArr = display.split(" ");
     const currentNum = displayArr[displayArr.length - 1];
-    console.log("arr: ", displayArr);
-    console.log("display: ", display);
 
     switch (value) {
       case "clear":
@@ -40,19 +56,33 @@ function App() {
           : setDisplay(display.concat(value));
         break;
       case "+":
-      case "-":
       case "/":
       case "*":
-        const currentOp = display[display.length - 2];
-        currentOp === "+" ||
-        currentOp === "-" ||
-        currentOp === "*" ||
-        currentOp === "/"
-          ? setDisplay(display.substring(0, display.length - 2) + `${value} `)
-          : setDisplay(`${display} ${value} `);
-        break;
+        if (currentNum !== "-") {
+          const currentOp = display[display.length - 2];
+          currentOp === "+" ||
+          currentOp === "*" ||
+          currentOp === "/" ||
+          currentOp === "-"
+            ? setDisplay(display.substring(0, display.length - 2) + `${value} `)
+            : setDisplay(`${display} ${value} `);
+          break;
+        } else {
+          setDisplay(display.substring(0, display.length - 3) + `${value} `);
+          break;
+        }
+      case "-":
+        if (currentNum === "") {
+          setDisplay(`${display}-`);
+          break;
+        } else if (currentNum === "-") {
+          break;
+        } else {
+          setDisplay(`${display} - `);
+          break;
+        }
       case "=":
-        console.log("do calculation!");
+        calculate(displayArr);
         break;
       default:
         console.log("click not recognized: ", value);
